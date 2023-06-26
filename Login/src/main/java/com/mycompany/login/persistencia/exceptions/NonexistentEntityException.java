@@ -1,4 +1,4 @@
-package com.mycompany.login.persistente.exceptions;
+package com.mycompany.login.persistencia.exceptions;
 
 public class NonexistentEntityException extends Exception {
     public NonexistentEntityException(String message, Throwable cause) {

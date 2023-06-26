@@ -2,25 +2,29 @@
 package com.mycompany.login.logica;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity //con esto decimos que usuario se transforma en tabla
+@Entity
 public class Usuario implements Serializable {
-    @Id // el atributo id sera el indentificador en la tabla de BD
-    @GeneratedValue(strategy=GenerationType.AUTO) //generar valores automaticos   
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
+    @Basic
     private String nombreUsuario;
     private String contrasenia;
-   
-    public Usuario(){}
-    
-    public Usuario(int id, String nombreUsuario, String contrasenia){
-        this.id=id;
-        this.nombreUsuario=nombreUsuario;
-        this.contrasenia=contrasenia;
+
+    public Usuario() {
+    }
+
+    public Usuario(int id, String nombreUsuario, String contrasenia) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
     }
 
     public int getId() {
@@ -46,8 +50,6 @@ public class Usuario implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    
-    
     
     
     

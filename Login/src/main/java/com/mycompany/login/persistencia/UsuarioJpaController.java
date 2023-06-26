@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.login.persistente;
+package com.mycompany.login.persistencia;
 
 import com.mycompany.login.logica.Usuario;
-import com.mycompany.login.persistente.exceptions.NonexistentEntityException;
+import com.mycompany.login.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -25,6 +26,10 @@ public class UsuarioJpaController implements Serializable {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
+    
+    public UsuarioJpaController(){
+        emf=Persistence.createEntityManagerFactory("loginPU");
+    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();

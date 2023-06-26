@@ -1,4 +1,4 @@
-package com.mycompany.login.persistente.exceptions;
+package com.mycompany.login.persistencia.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
