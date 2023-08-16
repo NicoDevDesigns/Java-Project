@@ -5,6 +5,7 @@
 package com.mycompany.peluqueriacanina.igu;
 
 import com.mycompany.peluqueriacanina.logica.ControladoraLogica;
+import com.mycompany.peluqueriacanina.logica.Mascota;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -12,14 +13,19 @@ import javax.swing.JOptionPane;
  *
  * @author sanch
  */
-public class CargarDatos extends javax.swing.JFrame {
+public class ModificarDatos extends javax.swing.JFrame {
     
-    ControladoraLogica control = new ControladoraLogica();
+    ControladoraLogica control = null;
+    int num_cliente;
     /**
      * Creates new form CargarDatos
      */
-    public CargarDatos() {
+    public ModificarDatos(int num_cliente) {
+        
+        control = new ControladoraLogica();
+        //this.num_cliente = num_cliente;
         initComponents();
+        cargarDatos(num_cliente);
     }
 
     /**
@@ -58,7 +64,7 @@ public class CargarDatos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Carga de datos");
+        jLabel1.setText("Modificar datos");
 
         jLabel2.setText("Nombre del cliente:");
 
@@ -156,7 +162,7 @@ public class CargarDatos extends javax.swing.JFrame {
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\sanch\\Desktop\\githubNico\\Java-Project\\peluqueriaCanina\\src\\main\\java\\com\\mycompany\\peluqueriacanina\\img\\save.png")); // NOI18N
-        btnGuardar.setText("GUARDAR");
+        btnGuardar.setText("Guardar Cambios");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -185,17 +191,16 @@ public class CargarDatos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jLabel10)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)))
                 .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(62, 62, 62))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,9 +214,9 @@ public class CargarDatos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -243,6 +248,7 @@ public class CargarDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+       /*
         String nombreMascota = txtNombre.getText();
         String raza = txtRaza.getText();
         String color = txtColor.getText();
@@ -260,7 +266,7 @@ public class CargarDatos extends javax.swing.JFrame {
         JDialog dialog = optionPane.createDialog("Guardado exitoso!");
         dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
-        
+        */
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -293,4 +299,32 @@ public class CargarDatos extends javax.swing.JFrame {
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos(int num_cliente) {
+        Mascota masco = control.traerMascota(num_cliente);
+        
+        txtNombre.setText(masco.getNombreMascota());
+        txtRaza.setText(masco.getRaza());
+        txtColor.setText(masco.getColor());
+        txtDuenio.setText(masco.getUnDuenio().getNombre());
+        txtCelular.setText(masco.getUnDuenio().getCelDuenio());
+        txtObservaciones.setText(masco.getObservaciones());
+        
+        
+        if(masco.getAlergico().equals("Si")){
+          cmbAlergico.setSelectedIndex(1);  
+        }else {
+            if(masco.getAlergico().equals("No")){
+          cmbAlergico.setSelectedIndex(2);       
+            }
+        }
+        
+        if(masco.getAtencionEspecial().equals("Si")){
+          cmbEspecial.setSelectedIndex(1);  
+        }else {
+            if(masco.getAtencionEspecial().equals("No")){
+          cmbEspecial.setSelectedIndex(2);       
+            }
+        }
+    }
 }
